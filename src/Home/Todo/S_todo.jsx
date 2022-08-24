@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Form, Input } from "antd";
+
 export const S_Todo = styled.div`
   background-color: #e55c8a;
   min-height: 100vh;
@@ -30,9 +32,10 @@ export const S_Todo = styled.div`
       border: 1px solid #121416;
       padding: 0 20px;
       outline: none;
+      color: #fff;
       caret-color: #fff;
     }
-    button {
+    .btnAdd {
       outline: none;
       width: 62px;
       height: 32px;
@@ -41,6 +44,23 @@ export const S_Todo = styled.div`
       background: pink;
       margin-left: 20px;
     }
+    .checkALL{
+      margin-top: 10px;
+      margin-bottom: -10px;
+     display: flex;
+     align-items: center;
+      .inputCheckAll{
+	     width: 24px;
+       height: 24px;
+        border: 10px solid pink;
+      }
+      span{
+        font-size: 19px;
+    color: pink;
+    margin-left: 10px;
+    font-weight: 700;
+      }
+    }
     h1 {
       display: flex;
       align-items: center;
@@ -48,6 +68,7 @@ export const S_Todo = styled.div`
     }
     .display {
       margin-top: 20px;
+      margin-bottom: 16px;
       background-color: #fff;
       border-radius: 6px;
       padding-left: 10px;
@@ -73,6 +94,12 @@ export const S_wrapIteam = styled.div`
     height: 18px;
     margin-right: 8px;
   }
+  #inputValue{
+    width: 100%;
+    border: none;
+    outline: none;
+    
+  }
 `;
 export const S_theDay = styled.div`
   width: 100%;
@@ -84,14 +111,14 @@ export const S_theDay = styled.div`
     cursor: pointer;
     color: #fff;
     position: absolute;
-    &:hover{
-        color: #dfb6bd;
+    &:hover {
+      color: #dfb6bd;
     }
-    &:nth-child(1){
+    &:nth-child(1) {
       top: 25%;
       left: 20%;
     }
-    &:nth-child(2){
+    &:nth-child(2) {
       top: 25%;
       right: 20%;
     }
@@ -102,7 +129,7 @@ export const S_theDay = styled.div`
     color: #fff;
     font-size: 40px;
     -moz-user-select: none;
-    -webkit-user-select:none;
+    -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
     /* display: block; */
@@ -119,12 +146,31 @@ export const S_theDay = styled.div`
       color: #8b929b;
       // ko cho bôi đen
       -moz-user-select: none;
-    -webkit-user-select:none;
-    -ms-user-select: none;
-    user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
       &:first-child {
         margin-left: 0;
       }
     }
   }
 `;
+export const S_buttonDeleAll = styled.button`
+  outline: none;
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  width: 100px;
+    font-size: 17px;
+    color: #1d2024;
+    font-weight: 600;
+    border-radius: 8px;
+      border: none;
+      background: pink;
+    opacity: 0.6;
+    transition: all 0.3s;
+  &:hover{
+    opacity: 1;
+  }
+
+`

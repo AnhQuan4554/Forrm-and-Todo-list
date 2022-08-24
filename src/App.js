@@ -1,6 +1,7 @@
 import React from 'react'
 import Register from './Register/Register'
 import 'react-toastify/dist/ReactToastify.css';
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import {
   BrowserRouter,
   Routes,
