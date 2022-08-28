@@ -21,7 +21,9 @@ export const S_Todo = styled.div`
       rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
       rgba(0, 0, 0, 0.22) 0px 10px 10px;
-    /* min-height: 540px; */
+    @media screen and (max-width: 768px) {
+      min-width: 76vw;
+    }
     .inputTodo {
       border-radius: 5px;
       width: 81%;
@@ -34,31 +36,74 @@ export const S_Todo = styled.div`
       outline: none;
       color: #fff;
       caret-color: #fff;
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
     }
     .btnAdd {
       outline: none;
       width: 62px;
       height: 32px;
-      border-radius: 8px;
+      border-radius: 14px;
       border: none;
       background: pink;
       margin-left: 20px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #222324;
+      cursor: pointer;
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 22px;
+      }
     }
     .checkALL {
       margin-top: 10px;
       margin-bottom: -10px;
       display: flex;
       align-items: center;
+
+   
       .inputCheckAll {
         width: 24px;
         height: 24px;
         border: 10px solid pink;
+       
       }
       span {
         font-size: 19px;
         color: pink;
         margin-left: 10px;
         font-weight: 700;
+      }
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .inputCheckAll {
+          display: none;
+          width: 100%;
+          &:checked + label{
+            span{
+             display :block ;
+              background-color: red;
+            }
+          }
+     
+        }
+        label {
+          width: 100%;
+          span {
+            background: #343a40;
+            display: block;
+            width: 100%;
+            margin-left: 0;
+            border-radius: 15px;
+          }
+        }
       }
     }
     h1 {
@@ -73,6 +118,11 @@ export const S_Todo = styled.div`
       border-radius: 6px;
       padding-left: 10px;
       padding-right: 10px;
+      @media screen and (max-width: 768px) {
+        max-height: 195px;
+        overflow-y: auto;
+        margin-bottom: 64px;
+      }
     }
   }
 `;
@@ -97,12 +147,12 @@ export const S_wrapIteam = styled.div`
       .inputCheckBox {
         display: none;
         &:checked + label:after {
-      opacity: 1;
-      border: 1px solid red;
-      
-      border-top: none;
-      border-right: none;
-    }
+          opacity: 1;
+          border: 1px solid red;
+
+          border-top: none;
+          border-right: none;
+        }
       }
       label {
         position: absolute;
@@ -115,22 +165,22 @@ export const S_wrapIteam = styled.div`
         border: 1px solid #32373d;
         cursor: pointer;
         &:after {
-      content: '';
-      width: 10px;
-      height: 6px;
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      border: 3px solid #fff ;
-      border-top: none;
-      border-right: none;
-      background: transparent;
-      opacity: 0;
-      transform: rotate(-45deg);
-    }
-    &:hover::after {
-      opacity: 0.5;
-    }
+          content: "";
+          width: 10px;
+          height: 6px;
+          position: absolute;
+          top: 4px;
+          left: 4px;
+          border: 3px solid #fff;
+          border-top: none;
+          border-right: none;
+          background: transparent;
+          opacity: 0;
+          transform: rotate(-45deg);
+        }
+        &:hover::after {
+          opacity: 0.5;
+        }
       }
     }
     .inputValue {
@@ -145,7 +195,6 @@ export const S_wrapIteam = styled.div`
       }
       &:disabled {
         width: 100%;
-     
       }
       span {
         width: 100%;
@@ -157,10 +206,16 @@ export const S_wrapIteam = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .iconEdit{
+    .iconEdit {
       margin-top: 5px;
       cursor: pointer;
       margin-left: 30px;
+      &:hover {
+        color: pink;
+      }
+      @media screen and (max-width: 768px) {
+        margin-left: 0;
+      }
     }
   }
 `;
@@ -185,6 +240,16 @@ export const S_theDay = styled.div`
       top: 25%;
       right: 20%;
     }
+    @media screen and (max-width: 768px) {
+      &:nth-child(1) {
+        top: 25%;
+        left: 24%;
+      }
+      &:nth-child(2) {
+        top: 25%;
+        right: 24%;
+      }
+    }
   }
 
   .day {
@@ -196,6 +261,9 @@ export const S_theDay = styled.div`
     -ms-user-select: none;
     user-select: none;
     /* display: block; */
+    @media screen and (max-width: 768px) {
+      font-size: 36px;
+    }
   }
 
   .otherTime {
@@ -235,4 +303,11 @@ export const S_buttonDeleAll = styled.button`
   &:hover {
     opacity: 1;
   }
+  @media only screen and (max-width: 768px) {
+    width: 100px;
+    height: 50px;
+    border-radius: 20px;
+  }
 `;
+///////////////////////////  RESPONSIVE
+// &:checked + label:after

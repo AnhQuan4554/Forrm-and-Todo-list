@@ -14,32 +14,30 @@ const Iteam_todo = ({ item, handelChecked, handelDelete, index }) => {
   const [isEdit, setIsEdit] = useState(true);
   const inputValues = document.querySelectorAll(".inputValue");
   const FiEdit3s = document.querySelectorAll(".iconEdit");
- 
+
   // const [colorIconEdit, setColorIconEdit] = useState('black')
   // inputValues && console.log(inputValues[0].disabled);
   const handleEditInput = (e) => {
     // console.log(inputValues[0].className);
     inputValues.forEach((i) => (i.disabled = true));
-    Array.from(FiEdit3s).forEach((i)=> i.style.color = 'black')
+    Array.from(FiEdit3s).forEach((i) => (i.style.color = "black"));
 
     const inputEdit = Array.from(inputValues).find((i) =>
-    i.classList.contains(e.currentTarget.id)
+      i.classList.contains(e.currentTarget.id)
     );
-    if (inputEdit) inputEdit.disabled = false; // tìm ra phần tử chỉnh sửa 
-    
-    // chỉnh màu cho icon pen
-    const iconEdit = Array.from(FiEdit3s).find((i) =>
-    i.id == e.currentTarget.id
-    );
-    if(iconEdit) iconEdit.style.color = 'pink';
-    
+    if (inputEdit) inputEdit.disabled = false; // tìm ra phần tử chỉnh sửa
 
+    // chỉnh màu cho icon pen
+    const iconEdit = Array.from(FiEdit3s).find(
+      (i) => i.id == e.currentTarget.id
+    );
+    if (iconEdit) iconEdit.style.color = "pink";
   };
   // khi blue ra ngoài input
-  const handleBlue = ()=>{
+  const handleBlue = () => {
     inputValues.forEach((i) => (i.disabled = true));
-    Array.from(FiEdit3s).forEach((i)=> i.style.color = 'black')
-  }
+    Array.from(FiEdit3s).forEach((i) => (i.style.color = "black"));
+  };
 
   return (
     <S_wrapIteam className="wrapIteam">
@@ -67,7 +65,7 @@ const Iteam_todo = ({ item, handelChecked, handelDelete, index }) => {
             onChange={(e) => {
               setvalue(e.target.value);
             }}
-            onBlur = {handleBlue}
+            onBlur={handleBlue}
             value={value}
           />
         </span>
@@ -75,9 +73,9 @@ const Iteam_todo = ({ item, handelChecked, handelDelete, index }) => {
       <div className="right">
         <label htmlFor={`${index}`}>
           <FiEdit3
-            style={{ marginTop: `5px`,cursor : 'pointer' }}
+            // style={{ marginTop: `5px`,cursor : 'pointer' }}
             id={item.id}
-            className='iconEdit'
+            className="iconEdit"
             fontSize="22px"
             onClick={(e) => {
               handleEditInput(e);
@@ -87,7 +85,11 @@ const Iteam_todo = ({ item, handelChecked, handelDelete, index }) => {
         <RiDeleteBin6Line
           fontSize="22px"
           onClick={() => handelDelete(item.id)}
-          style={{ opacity: item.completed === false && 0.3 ,color : item.completed && 'red',cursor:'pointer'  }}
+          style={{
+            opacity: item.completed === false && 0.3,
+            color: item.completed && "red",
+            cursor: "pointer",
+          }}
         />
       </div>
     </S_wrapIteam>
