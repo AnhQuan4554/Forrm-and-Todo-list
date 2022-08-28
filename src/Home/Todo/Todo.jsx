@@ -91,20 +91,22 @@ const Todo = () => {
   {
     /* start checkall */
   }
-  const handleCheckAll_item = (id) => {
-    setArrteams(
+  const handleCheckAll_item = () => {
+    // const arrCurrently  = arrIteams_local.length > 0 && arrIteams_local.filter(item => item.time.getdate === getdate)
+    arrIteams_local.length > 0 && setArrteams(
       arrIteams.map(
-        (iteam) => iteam && { ...iteam, completed: !iteam.completed }
+        (item) => item.time.getdate === getdate ? { ...item,  completed: !item.completed }  : { ...item,  completed: item.completed } 
       )
     );
   };
   const [checkALl, setCheckALl] = useState(false);
   useEffect(() => {
-    const arrChecked = arrIteams.filter((iteam) => iteam.completed == true);
-    arrChecked.length === arrIteams.length && arrIteams.length > 0
+    const arrChecked = arrIteams.filter((iteam) => iteam.completed == true && iteam.time.getdate == getdate); // các iteam được check trong ngày 
+    const arrIteamCurrently = arrIteams.filter((iteam) => iteam.time.getdate == getdate);// các item có trong ngày hôm đó
+    arrChecked.length === arrIteamCurrently.length
     ? setCheckALl(true)
     : setCheckALl(false);
-    const checkLastItem=  arrIteams.find(item=>item.time.getdate === getdate)
+    const checkLastItem=  arrIteams.find(item=>item.time.getdate === getdate) // kiểm tra xem còn phần tử nào trong mảng ko do arr mình cho ddieuf kiện lớn hơn 0
     !checkLastItem && setCheckALl(false)
   },[handelChecked]);
 
@@ -141,7 +143,7 @@ const Todo = () => {
               type="checkbox"
               value="Check All"
               checked={checkALl}
-              onChange={handleCheckAll_item}
+              onChange={ handleCheckAll_item}
             />
             <label for="checkall">
               <span>Check ALL</span>
@@ -160,6 +162,7 @@ const Todo = () => {
                     item={item}
                     handelChecked={handelChecked}
                     handelDelete={handelDelete}
+                    index={index}
                   />
                 )
             )}

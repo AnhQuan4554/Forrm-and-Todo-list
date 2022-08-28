@@ -44,21 +44,21 @@ export const S_Todo = styled.div`
       background: pink;
       margin-left: 20px;
     }
-    .checkALL{
+    .checkALL {
       margin-top: 10px;
       margin-bottom: -10px;
-     display: flex;
-     align-items: center;
-      .inputCheckAll{
-	     width: 24px;
-       height: 24px;
+      display: flex;
+      align-items: center;
+      .inputCheckAll {
+        width: 24px;
+        height: 24px;
         border: 10px solid pink;
       }
-      span{
+      span {
         font-size: 19px;
-    color: pink;
-    margin-left: 10px;
-    font-weight: 700;
+        color: pink;
+        margin-left: 10px;
+        font-weight: 700;
       }
     }
     h1 {
@@ -86,19 +86,82 @@ export const S_wrapIteam = styled.div`
     border: none;
   }
   .left {
+    width: 80%;
     display: flex;
     align-items: center;
+    .checkBox {
+      position: relative;
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+      .inputCheckBox {
+        display: none;
+        &:checked + label:after {
+      opacity: 1;
+      border: 1px solid red;
+      
+      border-top: none;
+      border-right: none;
+    }
+      }
+      label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 18px;
+        height: 18px;
+        border-radius: 2px;
+        background-color: #8894a4;
+        border: 1px solid #32373d;
+        cursor: pointer;
+        &:after {
+      content: '';
+      width: 10px;
+      height: 6px;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      border: 3px solid #fff ;
+      border-top: none;
+      border-right: none;
+      background: transparent;
+      opacity: 0;
+      transform: rotate(-45deg);
+    }
+    &:hover::after {
+      opacity: 0.5;
+    }
+      }
+    }
+    .inputValue {
+      border: none;
+      outline: none;
+      padding-left: 10px;
+      font-size: 18px;
+      font-weight: 500;
+      &:enabled {
+        width: 100%;
+        color: #423838;
+      }
+      &:disabled {
+        width: 100%;
+     
+      }
+      span {
+        width: 100%;
+      }
+    }
   }
-  .left input {
-    width: 18px;
-    height: 18px;
-    margin-right: 8px;
-  }
-  #inputValue{
-    width: 100%;
-    border: none;
-    outline: none;
-    
+  .right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .iconEdit{
+      margin-top: 5px;
+      cursor: pointer;
+      margin-left: 30px;
+    }
   }
 `;
 export const S_theDay = styled.div`
@@ -161,16 +224,15 @@ export const S_buttonDeleAll = styled.button`
   bottom: 10px;
   left: 20px;
   width: 100px;
-    font-size: 17px;
-    color: #1d2024;
-    font-weight: 600;
-    border-radius: 8px;
-      border: none;
-      background: pink;
-    opacity: 0.6;
-    transition: all 0.3s;
-  &:hover{
+  font-size: 17px;
+  color: #1d2024;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  background: pink;
+  opacity: 0.6;
+  transition: all 0.3s;
+  &:hover {
     opacity: 1;
   }
-
-`
+`;
