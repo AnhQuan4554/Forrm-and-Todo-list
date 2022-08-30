@@ -98,7 +98,7 @@ const Register = () => {
             <div className="button_Register">
                 <button type="submit">Register</button>
                 <span>or</span>
-                <Link to='/Sign_in'>Signin</Link>
+                <Link to='/'>Signin</Link>
             </div>
             <ToastContainer />
         </form>

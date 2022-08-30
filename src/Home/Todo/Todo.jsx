@@ -6,6 +6,7 @@ import Iteam_todo from "./Iteam_todo";
 import { S_Todo, S_buttonDeleAll } from "./S_todo";
 import { Todo_day } from "./Todo_day";
 import { IteamContext } from "./Provider_day"; // thông tin ngày tháng
+import Home_header from "../Home_header";
 
 const Todo = () => {
   const [valueInput, setValueinput] = useState(""); // giá trị nhập vào input
@@ -122,6 +123,7 @@ const Todo = () => {
   }
   return (
     <S_Todo>
+      <Home_header/>
       <div className="wrap_Todo">
         <Todo_day /> {/* hiện ngày tháng năm  */}
         <form onSubmit={handleSubmit}>

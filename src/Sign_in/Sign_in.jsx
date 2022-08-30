@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { cssTransition } from 'react-toastify'
 import './Sign_in.css'
 import { useNavigate } from "react-router-dom";
+import Home from '../Home/Home';
 
 
 
@@ -28,12 +29,11 @@ let navigate = useNavigate();
 
     //nếu có biến uuser curentlty thì lưu vào local biến userSurent
     userCurrentlt && localStorage.setItem('userCurrentlt',JSON.stringify(userCurrentlt))//chỉ cần 1 biến vì chỉ có 1 tài khoản đăng nhập được 
-    userCurrentlt &&  navigate("../", { replace: true });
+    userCurrentlt &&  navigate("../Home", { replace: true });
     setUserInfor(defauUser)
   }
   return (
     <div className="wrapSign_in">
-
         <form onSubmit={handleSub} className="Sign_in">
         <h2 style={{color: "#d91e7f",textAlign :' center'
         , marginBottom : `16px`

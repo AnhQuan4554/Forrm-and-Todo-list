@@ -16,16 +16,16 @@ export const Todo_day = () => {
   return (
     <S_theDay>
       <BsChevronCompactLeft
+          className="icon"
         onClick={(e) => {
           handleTime_reduce();
         }}
-        className="icon"
       />
       <BsChevronCompactRight
+          className="icon"
         onClick={(e) => {
           handleTime_incre();
         }}
-        className="icon"
       />
       <span className="day">
         {getday < 7 ? days[getday] : days[getday % 7]}

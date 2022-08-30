@@ -64,12 +64,10 @@ export const S_Todo = styled.div`
       display: flex;
       align-items: center;
 
-   
       .inputCheckAll {
         width: 24px;
         height: 24px;
         border: 10px solid pink;
-       
       }
       span {
         font-size: 19px;
@@ -86,13 +84,12 @@ export const S_Todo = styled.div`
         .inputCheckAll {
           display: none;
           width: 100%;
-          &:checked + label{
-            span{
-             display :block ;
+          &:checked + label {
+            span {
+              display: block;
               background-color: red;
             }
           }
-     
         }
         label {
           width: 100%;
