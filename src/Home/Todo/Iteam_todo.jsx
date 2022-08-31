@@ -73,9 +73,8 @@ const Iteam_todo = ({ item, handelChecked, handelDelete, index }) => {
       <div className="right">
         <label htmlFor={`${index}`}>
           <FiEdit3
-            // style={{ marginTop: `5px`,cursor : 'pointer' }}
-            id={item.id}
             className="iconEdit"
+            id={item.id}
             fontSize="22px"
             onClick={(e) => {
               handleEditInput(e);

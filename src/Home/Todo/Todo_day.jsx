@@ -16,13 +16,13 @@ export const Todo_day = () => {
   return (
     <S_theDay>
       <BsChevronCompactLeft
-          className="icon"
+        className="icon"
         onClick={(e) => {
           handleTime_reduce();
         }}
       />
       <BsChevronCompactRight
-          className="icon"
+        className="icon"
         onClick={(e) => {
           handleTime_incre();
         }}

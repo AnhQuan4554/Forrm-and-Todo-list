@@ -213,6 +213,9 @@ export const S_wrapIteam = styled.div`
       @media screen and (max-width: 768px) {
         margin-left: 0;
       }
+      @media screen and (max-width: 576px) {
+        margin-left: 0;
+      }
     }
   }
 `;
@@ -247,6 +250,17 @@ export const S_theDay = styled.div`
         right: 24%;
       }
     }
+    @media screen and (max-width: 576px) {
+   
+      &:nth-child(1) {
+        top: 15%;
+        left: 0%;
+      }
+      &:nth-child(2) {
+        top: 15%;
+        right: 0%;
+      }
+    }
   }
 
   .day {
@@ -260,6 +274,10 @@ export const S_theDay = styled.div`
     /* display: block; */
     @media screen and (max-width: 768px) {
       font-size: 36px;
+    }
+    @media screen and (max-width: 576px) {
+      font-size: 26px;
+
     }
   }
 

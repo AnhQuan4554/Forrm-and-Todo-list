@@ -7,6 +7,10 @@ export const Nav = styled.div`
   height: 66px;
   background-color: #fff;
   padding: 0 130px;
+  @media screen and (max-width: 576px) {
+
+    padding: 0 8px;
+  }
 `;
 export const S_inforUser = styled.div`
   display: flex;
@@ -25,9 +29,17 @@ export const S_inforUser = styled.div`
     margin-left: 13px;
     font-size: 21px;
     font-weight: 700;
+  
     span{
       color: #d52862;
     }
+    @media screen and (max-width: 576px) {
+      display: flex;
+    flex-direction: column;
+     span{
+      font-size: 14px;
+     }
+  }
   }
 `;
 export const S_btnLogOut = styled.button`
@@ -55,6 +67,13 @@ export const S_btnLogOut = styled.button`
   span{
     font-size: 18px;
     font-weight: 600;
+  }
+  @media screen and (max-width: 576px) {
+    
+      min-width: 50px;
+      span{
+        display: none;
+      }
   }
 `;
 export const S_btnGoogle = styled.button`

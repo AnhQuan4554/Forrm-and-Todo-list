@@ -21,7 +21,6 @@ const Home_header = () => {
     localStorage.removeItem('userCurrentlt') // remove tài khoản dăng nhập bình thường 
   };
   // Exit todo
-  console.log(userLocal)
   useEffect(()=>{
     
     if(user || userLocal ){
@@ -35,8 +34,6 @@ const Home_header = () => {
 
   return (
     <Nav>
-      {/* <Link to="/">Sign_in</Link>
-      <Link to="/Register">Register</Link> */}
       <S_inforUser >
         <div className="imgUser">
           <img src={user ? user.photoURL : `https://vnn-imgs-a1.vgcloud.vn/image1.ictnews.vn/_Files/2020/03/17/trend-avatar-1.jpg`} alt="" />
