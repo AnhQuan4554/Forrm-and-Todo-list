@@ -3,9 +3,12 @@ export const S_wrapSign_in = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: rgb(192, 183, 183);
   .Sign_in {
-    position: relative;
+    /* display: flex; */
+
     min-height: 450px;
     margin: auto;
     width: 400px;
@@ -31,36 +34,30 @@ export const S_wrapSign_in = styled.div`
       }
     }
   }
-  .linkResgiter{
-position: absolute;
-padding: 4px 20px;
-color: #fa0785;
-border: 1px solid red;
-border-radius: 20px;
-transition: all 0.2s;
-cursor: pointer;
-bottom: 3%;
-right: 5%;
-font-weight: 600;
+  .linkResgiter {
+    padding: 4px 20px;
+    color: #fa0785;
+    border: 1px solid red;
+    border-radius: 20px;
+    transition: all 0.2s;
+    cursor: pointer;
+    font-weight: 600;
     font-size: 16px;
-a{
-  color: #000;
-}
-&:hover{
-  background-color: pink;
-  a{
-    color: #fff;
-  }
-}
+    margin-right: 30px;
+    a {
+      color: #000;
+    }
+    &:hover {
+      background-color: pink;
+      a {
+        color: #fff;
+      }
+    }
   }
 `;
 export const S_btnSubmit = styled.button`
-  width: 64%;
+  min-width: 250px;
   height: 42px;
-  position: absolute;
-  bottom: 25%;
-  left: 50%;
-  transform: translateX(-50%);
   cursor: pointer;
   border: none;
   border-radius: 26px;
@@ -68,38 +65,15 @@ export const S_btnSubmit = styled.button`
   color: #fff;
   background: #c83c85;
   transition: all 0.3s;
-
   opacity: 0.9;
+  margin-bottom: 30px;
   &:hover {
     opacity: 1;
   }
 `;
-export const S_btnGoogle = styled.button`
-  display: block;
-  width: 64%;
-  height: 42px;
-  position: absolute;
-  bottom: 13%;
-  left: 50%;
-  transform: translateX(-50%);
-  cursor: pointer;
-  border: none;
-  border-radius: 26px;
-  font-size: 18px;
-  color: #333;
-  background: #c83c85;
 
+export const S_Wrapbtn = styled.div`
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 15px;
-  span {
-    color: #fff;
-  }
-  transition: all 0.3s;
-  opacity: 0.9;
-  &:hover {
-    opacity: 1;
-  }
+  justify-content: center;
 `;
-

@@ -1,119 +1,110 @@
-import React, { useState, useEffect, useContext } from "react";
-import { cssTransition } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+/* eslint-disable react/jsx-pascal-case */
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { ToastContainer, toast, cssTransition } from "react-toastify";
 import { Link } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
-import { S_btnGoogle, S_wrapSign_in, S_btnSubmit } from "./S_Sign_in";
-import { inforUser } from "../Firebase/UserContext";
+import { useNavigate } from "react-router-dom";
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
+
+import axios from "axios";
+
+import { S_wrapSign_in, S_btnSubmit, S_Wrapbtn } from "./S_Sign_in";
+import { getUser } from "../redux/slice/user";
 
 const Sign_in = () => {
-  const userLocal =localStorage.getItem('userCurrentlt') ? JSON.parse(localStorage.getItem('userCurrentlt')) : '';
-  /* sigin with google */
-  let navigate = useNavigate();
-  const { googleSign, user, logOut } = useContext(inforUser);
-  const handleGoogleSignIN = async (e) => {
-    e.preventDefault(); // ngăn ko cho nó nộp kết quả
-    try {
-      await googleSign();
-     
-    } catch (error) {
-      console.log(error);
+  const [user, setUser] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  console.log("user", user);
+  console.log("profile", profile);
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => setUser(codeResponse),
+    onError: (error) => console.log("Login Failed:", error),
+  });
+  useEffect(() => {
+    if (user) {
+      console.log("object22");
+      axios
+        .get(
+          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.access_token}`,
+              Accept: "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          console.log("res.data++", res.data);
+          setProfile(res.data);
+          if (res.data) {
+            toast.success("Login Success!", {
+              position: toast.POSITION.TOP_RIGHT,
+            });
+            //
+            dispatch(getUser(res.data));
+            //
+            navigate("/Home");
+          }
+        })
+        .catch((err) => {
+          toast.error("Login Error!", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          console.log("error", err);
+        });
     }
+  }, [user]);
+
+  // log out function to log the user out of google and set the profile array to null
+  const logOut = () => {
+    googleLogout();
+    setProfile(null);
   };
 
-  useEffect(()=>{
-    user   && navigate("../Home", { replace: true });
-   
-  },[user])
-  useEffect(()=>{
-    userLocal   && navigate("../Home", { replace: true });
-   
-  },[userLocal])
-
-  const defauUser = {
-    name: "",
-    password: "",
-  };
-
-  const [userInfor, setUserInfor] = useState(defauUser);
-  ///dọc dữ liệu từ local
-  const users = JSON.parse(localStorage.getItem("users"));
-
-  // khi SUB
-  const handleSub = (e) => {
-    e.preventDefault();
-    
-    const userCurrentlt = users.find(
-      (u) => u.name === userInfor.name && u.password === userInfor.password
-    );
-    console.log(userCurrentlt);
-    if (!userCurrentlt) {
-      alert("Tài khoản mật khẩu không tồn tại !!!");
-      return;
-    }
-
-    //nếu có biến uuser curentlty thì lưu vào local biến userSurent
-    userCurrentlt &&
-      localStorage.setItem("userCurrentlt", JSON.stringify(userCurrentlt)); //chỉ cần 1 biến vì chỉ có 1 tài khoản đăng nhập được
-    userCurrentlt && navigate("../Home", { replace: true });
-    setUserInfor(defauUser);
-  };
-
+  const handleSubWithoutGoogle = () => {};
   return (
     <S_wrapSign_in>
-      <form onSubmit={handleSub} className="Sign_in">
-        <h2
-          style={{
-            color: "#d91e7f",
-            textAlign: " center",
-            marginBottom: `16px`,
-          }}
-        >
-          Sign In
-        </h2>
-        <div className="Sign_in_input">
-          <label htmlFor="userInput">
-            <p>USERNAME</p>
-          </label>
-          <input
-            onChange={(e) =>
-              setUserInfor({ ...userInfor, name: e.target.value })
-            }
-            value={userInfor.name}
-            type="text"
-            name="userInput"
-            id="userInput"
-          />
-        </div>
-        <div className="Sign_in_input">
-          <label htmlFor="password">
-            <p>PASSWORD</p>
-          </label>
-          <input
-            onChange={(e) =>
-              setUserInfor({ ...userInfor, password: e.target.value })
-            }
-            value={userInfor.password}
-            type="text"
-            name="password"
-            id="password"
-          />
-        </div>
-
-        <S_btnSubmit type="submit">Đăng nhập</S_btnSubmit>
-        <S_btnGoogle
-          onClick={(e) => {
-            handleGoogleSignIN(e);
-          }}
-        >
-          <FcGoogle style={{ fontSize: `20px` }} />
-          <span>Đăng nhập bằng Google</span>{" "}
-        </S_btnGoogle>
-        <div className="linkResgiter">
-          <Link to="/Register">Đăng kí </Link>
-        </div>
-      </form>
-     
+      <div className="Sign_in">
+        <form onSubmit={handleSubWithoutGoogle}>
+          <h2
+            style={{
+              color: "#d91e7f",
+              textAlign: " center",
+              marginBottom: `16px`,
+            }}
+          >
+            Sign In
+          </h2>
+          <div className="Sign_in_input">
+            <label htmlFor="userInput">
+              <p>USERNAME</p>
+            </label>
+            <input type="text" name="userInput" id="userInput" />
+          </div>
+          <div className="Sign_in_input">
+            <label htmlFor="password">
+              <p>PASSWORD</p>
+            </label>
+            <input type="text" name="password" id="password" />
+          </div>
+          <S_Wrapbtn>
+            <S_btnSubmit>Sign in</S_btnSubmit>
+          </S_Wrapbtn>
+        </form>
+        <S_Wrapbtn>
+          <S_btnSubmit style={{ width: "unset" }} onClick={login}>
+            Sign in with Google 🚀{" "}
+          </S_btnSubmit>
+        </S_Wrapbtn>
+        <S_Wrapbtn>
+          <div className="linkResgiter">
+            <Link to="/Register">Đăng kí </Link>
+          </div>
+        </S_Wrapbtn>
+      </div>
+      <ToastContainer />
     </S_wrapSign_in>
   );
 };
