@@ -43,7 +43,6 @@ export const S_wrapSign_in = styled.div`
     cursor: pointer;
     font-weight: 600;
     font-size: 16px;
-    margin-right: 30px;
     a {
       color: #000;
     }
